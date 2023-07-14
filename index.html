@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script><meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        .main-shadow{
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.50), 0 10px 30px 0 rgba(0, 0, 0, 0.19);
+            
+        }
+        body{
+            /* From https://css.glass */
+background: rgba(27, 25, 25, 0.28);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(2.2px);
+-webkit-backdrop-filter: blur(9px);
+border: 1px solid rgba(27, 25, 25, 1);
+        }
+        .glass{
+            margin-top: 10%;
+            width: 30em;
+          /* From https://css.glass */
+            background: rgba(255, 253, 253, 0.28);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(1.6px);
+            -webkit-backdrop-filter: blur(9px);
+            border: 1px solid rgba(27, 25, 25, 1);
+            color: rgb(15, 15, 15);
+        }
+        .backgroundgif{
+            background: url(https://wallpapercave.com/wp/wp2757874.gif);
+            background-repeat: no-repeat;
+            background-size: cover;
+            
+        }
+        .butn:hover{
+            transform:scale(1.2);
+        }
+        .marginbottom{
+            margin-bottom: 175px;
+        }
+    </style>
+</head>
+<body class="bg-danger backgroundgif">
+    <form action="" id="LoginInformation">    
+        <div class="container marginbottom border border-1 border-black rounded-4 main-shadow glass bg-opacity-50">
+            <div class="row mt-5">
+                <div class="col-12 mb-5">
+                    <h1>Welcome To .....</h1>
+                    <h3>Please Fill Up Detaile To continue</h3>
+                </div>
+                <div class="col-12">
+                    <label>Enter Username</label>
+                    <div class="col-12"><input class="Text_Style form-control form-text bordercustom" placeholder="Username Use Like Starting ' @ '" type="text" id="Username" ></div>
+                </div>
+                <div class="col-12">
+                    <label>Enter Email</label>
+                    <div class="col-12"><input class="Text_Style form-control form-text bordercustom" placeholder="Enter Email Like Ending Is ' @gmail.com '" type="email" id="EmailId" ></div>
+                </div>
+                <div class="col-12">
+                    <label>Password</label>
+                    <div class="col-12"><input class="Text_Style form-control form-text bordercustom" placeholder="Passsword MustBe Longer Than 8 Character And Also Same" type="password" id="Password" ></div>
+                </div>
+                <div class="col-12">
+                    <label>Confirm Password</label>
+                    <div class="col-12"><input class="Text_Style form-control form-text bordercustom" placeholder="Passsword MustBe Longer Than 8 Character And Also Same" type="password" id="Confirmpassword"></div>
+                </div>
+                <div class="col-3"> </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-dark  w-100  Text_Size mt-2 mb-5 butn"  onclick="clearall()">Cancle</button>
+                </div>
+                <div class="col-3">
+                    <button type="submit" class="btn btn-dark  w-100  Text_Size mt-2 mb-5 butn"  onclick="ValidationEmail()">Submited</button>
+                    
+                </div>
+                <div class="col-3"></div>
+            </div>
+        </div>
+    </form>
+</body>
+    <script>
+        
+        function clearall(){
+            var b = document.getElementById('Username').value;
+            var b = document.getElementById('EmailId').value;
+            var b = document.getElementById('Password').value;
+            var b = document.getElementById('Confirmpassword').value;
+            Username.value = null;
+            EmailId.value = null;
+            Password.value = null;
+            Confirmpassword.value = null;
+
+        }
+        function ValidationEmail(){
+            var b = document.getElementById('EmailId').value;
+            var pattern = "@gmail.com$";
+            var regex = new RegExp(pattern);
+            if(regex.test(b)){
+                const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+})
+
+Toast.fire({
+    icon: 'success',
+    title: 'Signed in successfully'
+})
+                ValidationUsername();
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    
+                })
+            }
+        }
+
+        function ValidationUsername(){
+            var a = document.getElementById('Username').value;
+            var pattern = "^@";
+            var regex = new RegExp(pattern);
+            if(regex.test(a)){
+                const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+})
+
+Toast.fire({
+    icon: 'success',
+    title: 'Signed in successfully'
+})
+                ValidationPassword();
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    
+                })
+            }
+        }
+
+        function ValidationPassword(){
+            var a1 = document.getElementById('Password').value;
+            var a2 = document.getElementById('Confirmpassword').value;
+                if(a1==a2 && a1.length > 8){
+                const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+})
+
+Toast.fire({
+    icon: 'success',
+    title: 'Signed in successfully'
+})
+window.location.assign("Abc.html");
+
+                }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    
+                })
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script src="MyScript.js"></script>
+</html>
